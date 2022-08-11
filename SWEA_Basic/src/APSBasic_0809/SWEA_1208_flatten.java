@@ -1,0 +1,49 @@
+package APSBasic_0809;
+import java.util.Scanner;
+
+public class SWEA_1208_flatten {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		for (int T = 1; T <= 10; T++) {
+			// 각 케이스의 덤프 구하기
+			int dump = sc.nextInt();
+			// 상자 층수별로 배열에 저장한다.
+			int[] boxs = new int[100];
+			for (int j = 0; j < 100; j++) {
+				boxs[j] = sc.nextInt();
+			}
+			// 덤프수만큼 반복문 돌린다.
+			for (int i = 1; i <= dump; i++) {
+				// 배열을 버블정렬로 오름차순으로 나열한다.
+				for (int j = boxs.length - 1; j > 0; j--) {
+					for (int k = 0; k < boxs.length - 1; k++) {
+						if (boxs[k] > boxs[k + 1]) {
+							swap(boxs, k, k + 1);
+						}
+					}
+				}
+				// 오름차순으로 나열한 배열에서 최대값에서 1을 빼고 최소값에서 1를 더한다.
+				boxs[99] -= 1;
+				boxs[0] += 1;
+			} // 덤프수만큼 반복문 end
+			// 마지막으로 버블정렬로 오름차순으로 정리한 후 최대값과 최소값의 차이를 출력한다.
+			for (int i = 0; i < boxs.length - 1; i++) {
+				if (boxs[i] > boxs[i + 1]) {
+					swap(boxs, i, i + 1);
+				}
+			}
+			System.out.println("#" + T + " " + (boxs[99] - boxs[0]));
+		}
+
+	}
+
+	// swap 메소드를 만들어 놓기
+	static void swap(int[] boxs, int a, int b) {
+		int temp;
+		temp = boxs[a];
+		boxs[a] = boxs[b];
+		boxs[b] = temp;
+	}
+}

@@ -1,0 +1,29 @@
+
+import java.util.Scanner;
+
+public class SWEA_1206_view {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		// 10번동안 테스트 케이스를 받기 위해 반복문을 돌린다.
+		for (int j = 1; j <= 10; j++) {
+			// 건물의 수에 따라 반복하며 배열에 층수를 저장한다.
+			int N = sc.nextInt();
+			int[] arr = new int[N];
+			for (int i = 0; i < N; i++) {
+				arr[i] = sc.nextInt();
+			}
+			// 조망권이 확보된 층을 저장할 변수 greens를 선언한다.
+			int greens = 0;
+			// 앞에서 3번째 건물부터 뒤에서 3번째 건물까지
+			// 앞뒤로 1칸 2칸 떨어져있는 건물의 층수중에 가장 큰 수를 구하고
+			// 그 층보다 높은 층을 조망권 확보된 층으로 저장한다.
+			for (int i = 2; i <= N - 3; i++) {
+				int max = Math.max(Math.max(arr[i - 1], arr[i + 1]), Math.max(arr[i - 2], arr[i + 2]));
+				if (arr[i] > max) {
+					greens += arr[i] - max;
+				}
+			}
+			System.out.printf("#%d %d\n", j, greens);
+		}
+	}
+}

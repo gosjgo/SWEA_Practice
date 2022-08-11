@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\Develop\SWEA_Basic\.metadata\.plugins\org.eclipse.jdt.core
+3027258071.index
